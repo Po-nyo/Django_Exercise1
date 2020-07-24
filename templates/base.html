@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div style="margin: 20px;">
+        <strong style="font-size: xx-large; margin-left: 80px; cursor: pointer;" onclick="location.href='/'">Home</strong>
+        <a style="margin-left: 20px;" href="{% url 'helloworld' %}">helloworld</a>
+        <button class="btn btn-primary pull-right" style="margin-right: 80px;">로그인</button>
+        <button class="btn btn-primary pull-right" style="margin-right: 20px;">회원가입</button>
+    </div>
+    <hr>
+    <div style="margin: 50px 100px 50px 100px;">
+        {% block contents %}
+        {% endblock %}
+    </div>
+</body>
+</html>
+

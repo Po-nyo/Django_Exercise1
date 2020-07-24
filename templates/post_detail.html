@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %} 게시글 {% endblock %}
+
+{% block contents %}
+    <h2>{{ post.title }}</h2>
+    <hr>
+    <p><strong>작성자</strong> : {{ post.author }}</p>
+    <hr>
+    <p class="text-muted"> {{ post.created_date }}</p>
+    <p style="margin: 30px;">{{ post.content }}</p>
+    <hr>
+    <button type="button" class="btn btn-primary" onclick="location.href='edit'">글 수정하기</button>
+    <button type="button" class="btn btn-primary" onclick="location.href='remove'">글 삭제하기</button>
+    <button type="button" class="btn btn-primary" onclick="location.href='/'">글 목록</button>
+{% endblock %}
+
