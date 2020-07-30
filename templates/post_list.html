@@ -11,13 +11,15 @@
         <tbody>
         {% for p in posts %}
             <tr>
-                <td>{{ p.author }}</td>
+                <td>{{ p.user.lastname }}</td>
                 <td><a href="/{{ p.pk }}"> {{ p.title }}</a></td>
                 <td>{{ p.created_date }}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-    <button class="btn btn-primary float-right" onclick="location.href='create_post'">글 쓰기</button>
+    {% if user.is_authenticated %}
+        <button class="btn btn-primary float-right" onclick="location.href='create_post/{{ user.id }}'">글 쓰기</button>
+    {% endif %}
 {% endblock %}
 

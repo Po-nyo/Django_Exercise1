@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}로그인{% endblock %}
+
+{% block contents %}
+
+    <form method="post">
+        {% csrf_token %}
+        <div style="margin-left: 40%;">
+            <h1>로그인</h1><br><br>
+            <table>
+                <tr>
+                    <td style="padding: 10px;"><input type="text" placeholder="아이디" name="u_id"></td>
+                    <td rowspan="2" style="padding: 10px;"><button type="submit" class="btn btn-primary">로그인</button></td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px;"><input type="password" placeholder="비밀번호" name="u_pw"></td>
+                </tr>
+            </table>
+        </div>
+    </form>
+    {% for message in messages %}
+        <br><br>
+        <div class="alert alert-success">
+            <a class="close" href="#" data-dismiss="alert">×</a>
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -9,8 +9,13 @@
     <div style="margin: 20px;">
         <strong style="font-size: xx-large; margin-left: 80px; cursor: pointer;" onclick="location.href='/'">Home</strong>
         <a style="margin-left: 20px;" href="{% url 'helloworld' %}">helloworld</a>
-        <button class="btn btn-primary pull-right" style="margin-right: 80px;">로그인</button>
-        <button class="btn btn-primary pull-right" style="margin-right: 20px;">회원가입</button>
+        {% if user.is_authenticated %}
+            <span style="float: right">{{ user.lastname }}</span>
+            <button class="btn btn-primary pull-right" style="margin-right: 80px;" onclick="location.href='/sign_out'">로그아웃</button>
+        {% else %}
+            <button class="btn btn-primary pull-right" style="margin-right: 80px;" onclick="location.href='/sign_in'">로그인</button>
+            <button class="btn btn-primary pull-right" style="margin-right: 20px;">회원가입</button>
+        {% endif %}
     </div>
     <hr>
     <div style="margin: 50px 100px 50px 100px;">
