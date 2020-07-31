@@ -5,7 +5,7 @@
 {% block contents %}
     <h2>{{ post.title }}</h2>
     <hr>
-    <p><strong>작성자</strong> : {{ post.author }}</p>
+    <p><strong>작성자</strong> : {{ post.user.last_name }}</p>
     <hr>
     <p class="text-muted"> {{ post.created_date }}</p>
     <p style="margin: 30px;">{{ post.content }}</p>
