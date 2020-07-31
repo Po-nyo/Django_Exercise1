@@ -11,7 +11,7 @@
         <tbody>
         {% for p in posts %}
             <tr>
-                <td>{{ p.user.lastname }}</td>
+                <td>{{ p.user.last_name }}</td>
                 <td><a href="/{{ p.pk }}"> {{ p.title }}</a></td>
                 <td>{{ p.created_date }}</td>
             </tr>
@@ -19,7 +19,7 @@
         </tbody>
     </table>
     {% if user.is_authenticated %}
-        <button class="btn btn-primary float-right" onclick="location.href='create_post/{{ user.id }}'">글 쓰기</button>
+        <button class="btn btn-primary float-right" onclick="location.href='create_post'">글 쓰기</button>
     {% endif %}
 {% endblock %}
 

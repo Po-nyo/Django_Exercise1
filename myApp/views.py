@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Post
-from .forms import PostForm
+from .forms import PostForm, UserForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -20,12 +20,12 @@ def post_list(request):
     })
 
 
-def create_post(request, user_id):
+def create_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
-            post.user = User.objects.get(id=user_id)
+            post.user = request.user
             post.save()
         return redirect('/')
     else:
@@ -77,7 +77,21 @@ def post_remove(request, pk):
 
 
 def sign_up(request):
-    return redirect('/')
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            User.objects.create_user(username=user.username,
+                                     password=user.password,
+                                     is_active=0,
+                                     email=user.email,
+                                     last_name=user.last_name)
+        return redirect('/')
+    else:
+        form = UserForm()
+    return render(request, 'sign_up.html', {
+        'form': form,
+    })
 
 
 def sign_in(request):
@@ -85,6 +99,7 @@ def sign_in(request):
         u_id = request.POST['u_id']
         u_pw = request.POST['u_pw']
         user = authenticate(request, username=u_id, password=u_pw)
+
         if user is not None:
             login(request, user)
             return redirect('/')
