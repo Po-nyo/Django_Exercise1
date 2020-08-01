@@ -4,6 +4,12 @@ from .forms import PostForm, UserForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.core.mail import EmailMessage
+from django.utils.encoding import force_bytes, force_text
+from .token import activation_token
 
 # Create your views here.
 
@@ -86,6 +92,16 @@ def sign_up(request):
                                      is_active=0,
                                      email=user.email,
                                      last_name=user.last_name)
+            user = User.objects.get(username=user.username)
+            message = render_to_string('activation.html', {
+                'user': user,
+                'domain': get_current_site(request).domain,
+                'u_id': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': activation_token.make_token(user),
+            })
+            email = EmailMessage("이메일 인증", message, to=[user.email])
+            email.send()
+            return redirect('/')
         return redirect('/')
     else:
         form = UserForm()
@@ -113,3 +129,15 @@ def sign_in(request):
 def sign_out(request):
     logout(request)
     return redirect('/')
+
+
+def activate(request, encoded, token):
+    u_id = force_text(urlsafe_base64_decode(encoded))
+    user = User.objects.get(pk=u_id)
+    if user is not None and activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        login(request, user)
+        return redirect('/')
+    return redirect('/')
+
