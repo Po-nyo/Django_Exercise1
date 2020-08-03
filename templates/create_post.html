@@ -4,14 +4,6 @@
 
 {% block contents %}
 
-    {% if messages %}
-        {% for message in messages %}
-            <script>
-                alert('{{ message }}')
-            </script>
-        {% endfor %}
-    {% endif %}
-
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}

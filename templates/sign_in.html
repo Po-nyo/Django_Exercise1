@@ -22,13 +22,10 @@
     {% if messages %}
         {% for message in messages %}
             <br><br>
-            <div class="alert alert-success">
+            <div class="alert alert-danger" style="margin: 10px 200px;">
                 {{ message }}
                 <a class="close" href="#" data-dismiss="alert">×</a>
             </div>
-            <script>
-                alert('{{ message }}');
-            </script>
         {% endfor %}
     {% endif %}
 {% endblock %}

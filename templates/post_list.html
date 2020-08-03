@@ -3,7 +3,12 @@
 {% block title %}Home{% endblock %}
 
 {% block contents %}
-    <h2>Simple Board</h2>
+    <h1>
+        Simple Board
+        {% if author %}
+            <small class="text-muted"> - {{ author }}</small>
+        {% endif %}
+    </h1>
     <table class="table table-hover table-bordered">
         <thead>
             <th>작성자</th><th>제목</th><th>글 쓴 날짜</th>
@@ -11,7 +16,7 @@
         <tbody>
         {% for p in posts %}
             <tr>
-                <td>{{ p.user.last_name }}</td>
+                <td><a href="/author/{{ p.user.username }}">{{ p.user.last_name }}</a></td>
                 <td><a href="/{{ p.pk }}"> {{ p.title }}</a></td>
                 <td>{{ p.created_date.year }}년 {{ p.created_date.month }}월 {{ p.created_date.day }}일 {{ p.created_date.time }}</td>
                 {% if user.is_superuser %}
@@ -21,6 +26,9 @@
         {% endfor %}
         </tbody>
     </table>
+    {% if author %}
+        <button class="btn btn-primary float-right" onclick="location.href='/'">전체목록</button>
+    {% endif %}
     {% if user.is_authenticated %}
         <button class="btn btn-primary float-right" onclick="location.href='create_post'">글 쓰기</button>
     {% endif %}

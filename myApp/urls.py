@@ -14,5 +14,6 @@ urlpatterns = [
     path('activate/<str:encoded>/<str:token>/', views.activate, name="activate"),
     path('sign_up_confirm/<str:email>/', views.sign_up_confirm, name='sign_up_confirm'),
     path('my_page/', views.my_page, name='my_page'),
+    path('author/<str:username>/', views.post_list_by_author, name='post_list_by_author'),
 ]
 

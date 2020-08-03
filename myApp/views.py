@@ -172,3 +172,12 @@ def my_page(request):
         return redirect('sign_in')
 
     return render(request, 'my_page.html')
+
+
+def post_list_by_author(request, username):
+    author = User.objects.get(username=username)
+    posts = author.posts.all()
+    return render(request, 'post_list.html', {
+        'posts': posts,
+        'author': author.last_name,
+    })
