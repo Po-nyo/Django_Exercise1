@@ -19,11 +19,16 @@
             </table>
         </div>
     </form>
-    {% for message in messages %}
-        <br><br>
-        <div class="alert alert-success">
-            <a class="close" href="#" data-dismiss="alert">×</a>
-            {{ message }}
-        </div>
-    {% endfor %}
+    {% if messages %}
+        {% for message in messages %}
+            <br><br>
+            <div class="alert alert-success">
+                {{ message }}
+                <a class="close" href="#" data-dismiss="alert">×</a>
+            </div>
+            <script>
+                alert('{{ message }}');
+            </script>
+        {% endfor %}
+    {% endif %}
 {% endblock %}

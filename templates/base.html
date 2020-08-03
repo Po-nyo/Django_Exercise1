@@ -6,6 +6,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 <body>
+    {% if messages %}
+        {% for message in messages %}
+            <script>
+                alert('{{ message }}')
+            </script>
+        {% endfor %}
+    {% endif %}
+
     <div style="margin: 20px;">
         <strong style="font-size: xx-large; margin-left: 80px; cursor: pointer;" onclick="location.href='/'">Home</strong>
         <a style="margin-left: 20px;" href="{% url 'helloworld' %}">helloworld</a>
