@@ -55,7 +55,7 @@
                             <a href="/{{ post.pk }}">{{ post.title }}</a><br>
                         </td>
                         <td class="text-center">
-                            <button onclick="location.href='{{ post.pk }}/remove/'" class="btn btn-sm btn-danger">글 삭제</button>
+                            <button onclick="location.href='/{{ post.pk }}/remove/'" class="btn btn-sm btn-danger">글 삭제</button>
                         </td>
                     </tr>
                 {% endfor %}

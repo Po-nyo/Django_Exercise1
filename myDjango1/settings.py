@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myApp',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,6 @@ EMAIL_HOST_USER = secrets.readline().rstrip('\n')
 EMAIL_HOST_PASSWORD = secrets.readline()
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# Session validity (sec)
+SESSION_COOKIE_AGE = 60 * 60
