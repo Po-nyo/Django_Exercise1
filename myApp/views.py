@@ -84,7 +84,7 @@ def post_remove(request, pk):
         messages.info(request, "로그인이 필요합니다.")
         return redirect('sign_in')
 
-    if post.user != request.user:
+    if post.user != request.user and not request.user.is_superuser:
         messages.info(request, "권한이 없습니다.")
         return redirect('/')
 
@@ -165,3 +165,10 @@ def activate(request, encoded, token):
         return redirect('/')
     return redirect('/')
 
+
+def my_page(request):
+    if not request.user.is_authenticated:
+        messages.info(request, "로그인이 필요합니다.")
+        return redirect('sign_in')
+
+    return render(request, 'my_page.html')

@@ -13,5 +13,6 @@ urlpatterns = [
     path('sign_out/', views.sign_out, name='sign_out'),
     path('activate/<str:encoded>/<str:token>/', views.activate, name="activate"),
     path('sign_up_confirm/<str:email>/', views.sign_up_confirm, name='sign_up_confirm'),
+    path('my_page/', views.my_page, name='my_page'),
 ]
 

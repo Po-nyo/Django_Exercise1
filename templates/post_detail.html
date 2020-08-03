@@ -7,7 +7,9 @@
     <hr>
     <p><strong>작성자</strong> : {{ post.user.last_name }}</p>
     <hr>
-    <p class="text-muted"> {{ post.created_date }}</p>
+    <p class="text-muted">
+        {{ post.created_date.year }}년 {{ post.created_date.month }}월 {{ post.created_date.day }}일 {{ post.created_date.time }}
+    </p>
     <p style="margin: 30px;">{{ post.content }}</p>
     <hr>
     {% if post.user == request.user %}

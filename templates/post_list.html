@@ -6,14 +6,17 @@
     <h2>Simple Board</h2>
     <table class="table table-hover table-bordered">
         <thead>
-        <th>작성자</th><th>제목</th><th>글 쓴 날짜</th>
+            <th>작성자</th><th>제목</th><th>글 쓴 날짜</th>
         </thead>
         <tbody>
         {% for p in posts %}
             <tr>
                 <td>{{ p.user.last_name }}</td>
                 <td><a href="/{{ p.pk }}"> {{ p.title }}</a></td>
-                <td>{{ p.created_date }}</td>
+                <td>{{ p.created_date.year }}년 {{ p.created_date.month }}월 {{ p.created_date.day }}일 {{ p.created_date.time }}</td>
+                {% if user.is_superuser %}
+                    <td class="text-center"><button onclick="location.href='/{{ p.pk }}/remove/'" class="btn btn-danger">글 삭제</button></td>
+                {% endif %}
             </tr>
         {% endfor %}
         </tbody>
