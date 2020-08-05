@@ -58,7 +58,6 @@ def post_edit(request, pk):
     if request.method == 'POST':
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
-            form.instance.user = request.user
             form.save()
             messages.info(request, "글이 수정되었습니다.")
             return redirect('/')
