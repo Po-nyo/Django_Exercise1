@@ -3,6 +3,7 @@ from .models import Post
 from .forms import PostForm
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator
 
 
 # Create your views here.
@@ -13,7 +14,10 @@ def helloworld(request):
 
 
 def post_list(request):
-    posts = Post.objects.all().order_by('-created_date')
+    all_posts = Post.objects.all().order_by('-created_date')
+    paginator = Paginator(all_posts, 3)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
 
     return render(request, 'myApp/post_list.html', {
         'posts': posts
