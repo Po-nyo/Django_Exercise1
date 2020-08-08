@@ -9,6 +9,7 @@
             <small class="text-muted"> - {{ author }}</small>
         {% endif %}
     </h1>
+    <br>
     <table class="table table-hover table-bordered">
         <thead>
             <th>작성자</th><th>제목</th><th>글 쓴 날짜</th>
@@ -74,7 +75,7 @@
         <button class="btn btn-primary float-right" onclick="location.href='/'">전체목록</button>
     {% endif %}
     {% if user.is_authenticated %}
-        <button class="btn btn-primary float-right" onclick="location.href='/create_post'">글 쓰기</button>
+        <a href="{% url 'create_post' %}"><button class="btn btn-primary float-right">글 쓰기</button></a>
     {% endif %}
 {% endblock %}
 

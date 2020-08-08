@@ -20,6 +20,7 @@
         {% if user.is_authenticated %}
             <button class="btn btn-primary pull-right" style="margin-right: 80px;" onclick="location.href='/accounts/sign_out'">로그아웃</button>
             <button onclick="location.href='/my_page'" class="btn btn-info pull-right" style="margin-right: 20px;">{{ user.last_name }} 님</button>
+            <button onclick="location.href='/visualization_service'" class="btn btn-success pull-right" style="margin-right: 20px;">시각화 서비스</button>
         {% else %}
             <button class="btn btn-primary pull-right" style="margin-right: 80px;" onclick="location.href='/accounts/sign_in'">로그인</button>
             <button class="btn btn-primary pull-right" style="margin-right: 20px;" onclick="location.href='/accounts/sign_up'">회원가입</button>

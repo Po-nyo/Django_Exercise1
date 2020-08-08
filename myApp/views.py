@@ -4,7 +4,8 @@ from .forms import PostForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
-
+from .visualization import VisualizationFolium, VisualizationPlotly
+from django.views.decorators.clickjacking import xframe_options_sameorigin
 
 # Create your views here.
 
@@ -103,4 +104,38 @@ def post_list_by_author(request, username):
     return render(request, 'myApp/post_list.html', {
         'posts': posts,
         'author': author.last_name,
+    })
+
+
+def visualization_service(request):
+    if not request.user.is_authenticated:
+        messages.info(request, "로그인이 필요합니다.")
+        return redirect('sign_in')
+
+    return render(request, 'myApp/visualization_service.html', {
+    })
+
+
+@xframe_options_sameorigin
+def visualization_view(request):
+    if not request.user.is_authenticated:
+        messages.info(request, "로그인이 필요합니다.")
+        return redirect('sign_in')
+
+    select = request.GET.get('select')
+
+    template = None
+
+    if select == 'plt_gapminder':
+        figure = VisualizationPlotly().get_figure()
+        template = 'myApp/visualization/plotly_view.html'
+    elif select == 'plt_iris':
+        figure = VisualizationPlotly().get_figure2()
+        template = 'myApp/visualization/plotly_view.html'
+    else:
+        figure = VisualizationFolium().get_figure(select)
+        template = 'myApp/visualization/folium_view.html'
+
+    return render(request, template, {
+        'figure': figure,
     })

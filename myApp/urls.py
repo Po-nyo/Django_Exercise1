@@ -10,5 +10,7 @@ urlpatterns = [
     path('<int:pk>/remove/', views.post_remove, name='post_remove'),
     path('my_page/', views.my_page, name='my_page'),
     path('author/<str:username>/', views.post_list_by_author, name='post_list_by_author'),
+    path('visualization_service/', views.visualization_service, name='visualization_service'),
+    path('visualization_view/', views.visualization_view, name='visualization_view'),
 ]
 

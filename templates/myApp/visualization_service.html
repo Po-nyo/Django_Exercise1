@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}시각화 서비스{% endblock %}
+
+{% block contents %}
+    <h1>Visualization Service</h1><br>
+    <form action="/visualization_view" target="visualization_view" class="text-right">
+        <select name="select" style="width: auto; margin-right: 20px; padding: 5px">
+            <option value="동">서울시 노령화 인구 - 동 단위</option>
+            <option value="구">서울시 노령화 인구 - 구 단위</option>
+            <option value="plt_gapminder">[plotly] 예제1</option>
+            <option value="plt_iris">[plotly] 예제2</option>
+        </select>
+        <button type="submit" class="btn btn-success pull-right">보기</button>
+    </form>
+    <br>
+    <iframe src="/visualization_view" width="100%" height="500" name="visualization_view"></iframe>
+{% endblock %}
+
