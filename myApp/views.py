@@ -132,6 +132,9 @@ def visualization_view(request):
     elif select == 'plt_iris':
         figure = VisualizationPlotly().get_figure2()
         template = 'myApp/visualization/plotly_view.html'
+    elif select == '푸드트럭_허가구역':
+        figure = VisualizationFolium().get_figure2()
+        template = 'myApp/visualization/folium_view.html'
     else:
         figure = VisualizationFolium().get_figure(select)
         template = 'myApp/visualization/folium_view.html'

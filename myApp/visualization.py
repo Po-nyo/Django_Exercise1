@@ -8,6 +8,7 @@ class VisualizationFolium:
 
     def __init__(self):
         self.df = pd.read_csv('./data/older_population.csv')
+        self.df2 = pd.read_csv('./data/전국푸드트럭허가구역.csv')
         self.geo_data = './data/seoul-dong.geojson'
 
     def get_figure(self, area):
@@ -35,6 +36,26 @@ class VisualizationFolium:
                 fill_color='BuPu',
                 legend_name='노령 인구수',
             ).add_to(m)
+
+        figure = folium.Figure()
+        m.add_to(figure)
+        figure.render()
+
+        return figure
+
+    def get_figure2(self):
+        center = [36.701553, 127.941129]
+
+        m = folium.Map(location=center, zoom_start=7)
+
+        for i in self.df2.index[:]:
+            current_loc = self.df2.loc[i, ['위도', '경도']].dropna()
+            if current_loc.size != 0:
+                folium.Circle(
+                    location=(current_loc['위도'], current_loc['경도']),
+                    tooltip=self.df2.loc[i, '시군구명'],
+                    radius=200
+                ).add_to(m)
 
         figure = folium.Figure()
         m.add_to(figure)
