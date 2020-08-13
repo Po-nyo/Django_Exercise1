@@ -16,7 +16,6 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Secrets
-
 secrets = open(os.path.abspath('secrets.txt'), encoding='utf-8')
 
 
