@@ -128,7 +128,7 @@ secrets = open(os.path.abspath('secrets.txt'), encoding='utf-8')
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
 EMAIL_HOST_USER = secrets.readline().rstrip('\n')
-EMAIL_HOST_PASSWORD = secrets.readline()
+EMAIL_HOST_PASSWORD = secrets.readline().rstrip('\n')
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
