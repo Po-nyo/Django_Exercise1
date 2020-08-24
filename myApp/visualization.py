@@ -43,7 +43,7 @@ class VisualizationFolium:
 
         return figure
 
-    def get_figure2(self):
+    def get_foodtruck_figure(self):
         center = [36.701553, 127.941129]
 
         m = folium.Map(location=center, zoom_start=7)
@@ -71,7 +71,7 @@ class VisualizationPlotly:
         self.gapminder = px.data.gapminder()
         self.iris = px.data.iris()
 
-    def get_figure(self):
+    def get_gapminder_figure(self):
         figure = px.area(
             self.gapminder,
             x='year',
@@ -83,7 +83,7 @@ class VisualizationPlotly:
 
         return fig_div
 
-    def get_figure2(self):
+    def get_iris_figure(self):
         figure = px.scatter(
             self.iris,
             x='petal_width',

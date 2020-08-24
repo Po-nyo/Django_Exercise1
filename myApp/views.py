@@ -127,13 +127,13 @@ def visualization_view(request):
     template = None
 
     if select == 'plt_gapminder':
-        figure = VisualizationPlotly().get_figure()
+        figure = VisualizationPlotly().get_gapminder_figure()
         template = 'myApp/visualization/plotly_view.html'
     elif select == 'plt_iris':
-        figure = VisualizationPlotly().get_figure2()
+        figure = VisualizationPlotly().get_iris_figure()
         template = 'myApp/visualization/plotly_view.html'
     elif select == '푸드트럭_허가구역':
-        figure = VisualizationFolium().get_figure2()
+        figure = VisualizationFolium().get_foodtruck_figure()
         template = 'myApp/visualization/folium_view.html'
     else:
         figure = VisualizationFolium().get_figure(select)
