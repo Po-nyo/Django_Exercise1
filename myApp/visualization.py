@@ -79,6 +79,7 @@ class VisualizationPlotly:
             color='continent',
             line_group='country'
         )
+
         fig_div = plot.offline.plot(figure, output_type='div')
 
         return fig_div
