@@ -124,8 +124,6 @@ def visualization_view(request):
 
     select = request.GET.get('select')
 
-    template = None
-
     if select == 'plt_gapminder':
         figure = VisualizationPlotly().get_gapminder_figure()
         template = 'myApp/visualization/plotly_view.html'
