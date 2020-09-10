@@ -17,11 +17,11 @@
         <tbody>
         {% for p in posts %}
             <tr>
-                <td><a href="/author/{{ p.user.username }}">{{ p.user.last_name }}</a></td>
-                <td><a href="/{{ p.pk }}"> {{ p.title }}</a></td>
+                <td><a href="{% url 'post_list_by_author' p.user.username %}">{{ p.user.last_name }}</a></td>
+                <td><a href="{% url 'post_detail' p.pk %}"> {{ p.title }}</a></td>
                 <td>{{ p.created_date.year }}년 {{ p.created_date.month }}월 {{ p.created_date.day }}일 {{ p.created_date.time }}</td>
                 {% if user.is_superuser %}
-                    <td class="text-center"><button onclick="location.href='/{{ p.pk }}/remove/'" class="btn btn-danger">글 삭제</button></td>
+                    <td class="text-center"><button onclick="location.href='{% url 'post_remove' p.pk %}'" class="btn btn-danger">글 삭제</button></td>
                 {% endif %}
             </tr>
         {% endfor %}
@@ -72,7 +72,7 @@
         </ul>
     </div>
     {% if author %}
-        <button class="btn btn-primary float-right" onclick="location.href='/'">전체목록</button>
+        <button class="btn btn-primary float-right" onclick="location.href='{% url 'post_list' %}'">전체목록</button>
     {% endif %}
     {% if user.is_authenticated %}
         <a href="{% url 'create_post' %}"><button class="btn btn-primary float-right">글 쓰기</button></a>

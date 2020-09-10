@@ -13,9 +13,9 @@
     <p style="margin: 30px;">{{ post.content }}</p>
     <hr>
     {% if post.user == request.user %}
-        <button type="button" class="btn btn-primary" onclick="location.href='edit'">글 수정하기</button>
-        <button type="button" class="btn btn-primary" onclick="location.href='remove'">글 삭제하기</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='{% url 'post_edit' post.pk %}'">글 수정하기</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='{% url 'post_remove' post.pk %}'">글 삭제하기</button>
     {% endif %}
-    <button type="button" class="btn btn-primary" onclick="location.href='/'">전체 목록</button>
+    <button type="button" class="btn btn-primary" onclick="location.href='{% url 'post_list' %}'">전체 목록</button>
 {% endblock %}
 
